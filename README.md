@@ -21,6 +21,10 @@ Served by GitHub Pages from `main`. There is no build step.
 
 Problems with the manual itself belong in [encs4110](https://github.com/ECE-Birzeit/encs4110/issues/new/choose). See the [contributing guide](https://github.com/ECE-Birzeit/.github/blob/main/CONTRIBUTING.md).
 
+## License
+
+[MIT](LICENSE) © Mohammad Abu-Shelbaia. The Birzeit University name and logo are the university's; they are not licensed here.
+
 ---
 
 <sub>Part of [ECE Lab Manuals](https://birzeit.me) · Maintained by [Mohammad Abu-Shelbaia](https://github.com/mabushelbaia)</sub>
