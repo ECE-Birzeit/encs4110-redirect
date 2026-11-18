@@ -5,14 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ENCS4110 has moved</title>
   <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#dc2626">
   <link rel="canonical" href="https://encs4110.birzeit.me/">
-  <meta http-equiv="refresh" content="0; url=https://encs4110.birzeit.me/">
+  <noscript><meta http-equiv="refresh" content="0; url=https://encs4110.birzeit.me/"></noscript>
   <script>
-    // Keep the path so deep links land on the same page at the new domain.
-    location.replace("https://encs4110.birzeit.me" + location.pathname + location.search + location.hash);
+    // An app installed from this domain always opens this domain, so redirecting it
+    // only leaves it with nothing saved for offline use. Inside the installed app,
+    // show how to reinstall from the new domain; everywhere else, redirect at once.
+    var installed = window.matchMedia(
+      "(display-mode: standalone), (display-mode: minimal-ui), (display-mode: fullscreen), (display-mode: window-controls-overlay)"
+    ).matches || window.navigator.standalone === true;
+    if (installed) {
+      document.documentElement.className = "installed";
+      // Keeps this page saved, so opening the old app offline shows it instead of a browser error.
+      if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
+    } else {
+      // Keep the path so deep links land on the same page at the new domain.
+      location.replace("https://encs4110.birzeit.me" + location.pathname + location.search + location.hash);
+    }
   </script>
+  <style>
+    :root {
+      --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --line: #d1d9e0;
+      --accent: #dc2626; --accent-fg: #ffffff;
+      color-scheme: light dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #1b1b1f; --fg: #e6e6e9; --muted: #a0a0ab; --line: #3c3f44; --accent: #f87171; --accent-fg: #1b1b1f; }
+    }
+    body {
+      margin: 0; background: var(--bg); color: var(--fg);
+      font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .notice { display: none; }
+    .installed .notice { display: block; }
+    .installed .plain { display: none; }
+    main { max-width: 34rem; margin: 0 auto; padding: 3rem 1rem; }
+    .code { color: var(--accent); font-weight: 600; letter-spacing: .02em; margin: 0 0 .5rem; }
+    h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 1rem; }
+    p { margin: 0 0 1rem; }
+    ol { padding-left: 1.25rem; margin: 0 0 1.5rem; }
+    li { margin-bottom: .6rem; }
+    .muted { color: var(--muted); font-size: .92rem; }
+    .button {
+      display: inline-block; background: var(--accent); color: var(--accent-fg);
+      text-decoration: none; font-weight: 600; padding: .65rem 1.1rem; border-radius: 8px;
+    }
+    a { color: var(--accent); }
+    hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0 1.25rem; }
+  </style>
 </head>
 <body>
-  <p>ENCS4110 has moved to <a href="https://encs4110.birzeit.me/">encs4110.birzeit.me</a>.</p>
+  <main>
+    <p class="plain">ENCS4110 has moved to <a href="https://encs4110.birzeit.me/">encs4110.birzeit.me</a>.</p>
+
+    <div class="notice">
+      <p class="code">ENCS4110</p>
+      <h1>This app has moved to a new address</h1>
+      <p>The lab manual now lives at <strong>encs4110.birzeit.me</strong>. This installed app still points to the old address, so it can no longer save pages for offline use.</p>
+      <ol>
+        <li><strong>Remove this app.</strong> On Android, press and hold its icon and choose Uninstall. On iPhone, press and hold it and choose Remove App. On a computer, open the app's three-dot menu and choose Uninstall.</li>
+        <li><strong>Open <a href="https://encs4110.birzeit.me/">encs4110.birzeit.me</a></strong> in your browser and let the page finish loading.</li>
+        <li><strong>Install it again</strong> from the browser menu: Install app or Add to Home screen.</li>
+      </ol>
+      <a class="button" href="https://encs4110.birzeit.me/">Open the new site</a>
+      <hr>
+      <p class="muted">The new app works offline. Open it once while you have a connection and it saves the manual on your device.</p>
+    </div>
+  </main>
 </body>
 </html>
